@@ -1,2 +1,3 @@
-# Twitter-Sentiment-Analysis
-Working through NLP techniques in Twitter data analysis
+# Sentiment Analysis on Twitter Hate Tweets
+
+Labeled racist, sexist, and homophobic tweets
