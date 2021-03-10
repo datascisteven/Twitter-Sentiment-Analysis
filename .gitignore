@@ -125,3 +125,9 @@ dmypy.json
 .pyre/
 .DS_Store
 *.json
+
+config.py
+__pycache__
+.ipynb_checkpoints
+
+/py
