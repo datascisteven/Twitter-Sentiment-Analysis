@@ -131,3 +131,5 @@ __pycache__
 .ipynb_checkpoints
 
 /py
+
+/notebooks/twitter_api.ipynb

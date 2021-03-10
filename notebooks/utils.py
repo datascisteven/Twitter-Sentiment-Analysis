@@ -1,3 +1,10 @@
+import matplotlib.pyplot as plt
+import numpy as np
+import seaborn as sns
+from sklearn.metrics import precision_score, recall_score, accuracy_score, f1_score, auc, average_precision_score, confusion_matrix, roc_auc_score, plot_precision_recall_curve
+from collections import Counter
+from tqdm import tqdm
+
 def group_list(lst, size=100):
     """
     Generate batches of 100 ids in each
@@ -13,8 +20,6 @@ def group_list(lst, size=100):
     return new_list
 
 
-import config
-from tqdm import tqdm
 def tweets_request(tweets_ids):
     """
     Make a requests to Tweeter API
@@ -33,13 +38,6 @@ def tweets_request(tweets_ids):
     
     return pd.concat(df_lst)
 
-import matplotlib.pyplot as plt
-import numpy as np
-import seaborn as sns
-from sklearn.metrics import precision_score, recall_score, accuracy_score, f1_score, roc_curve, auc, average_precision_score, confusion_matrix, precision_recall_curve 
-from sklearn.metrics import roc_auc_score, classification_report, plot_precision_recall_curve
-from collections import Counter
-import pickle
 
 def accuracy(y, y_hat):
     y_y_hat = list(zip(y, y_hat))
@@ -136,12 +134,6 @@ def get_metrics(X_tr, y_tr, X_val, y_val, y_pred_tr, y_pred_val, model):
     print('Validation Precision Score: ', pr_val)
     print('Training Average Precision Score: ', aps_tr)
     print('Validation Average Precision Score: ', aps_val)
-    print('')
-    print("Training Classification Report: ")
-    print(classification_report(y_tr, y_pred_tr))
-    print("")
-    print("Validation Classification Report: ")
-    print(classification_report(y_val, y_pred_val))
     
     cnf = confusion_matrix(y_val, y_pred_val)
     group_names = ['TN','FP','FN','TP']
@@ -151,7 +143,7 @@ def get_metrics(X_tr, y_tr, X_val, y_val, y_pred_tr, y_pred_val, model):
     labels = np.asarray(labels).reshape(2,2)
     sns.heatmap(cnf, annot=labels, fmt='', cmap='Blues', annot_kws={'size':16})
 
-def get_metric_2(X_tr, y_tr, X_val, y_val, y_pred_tr, y_pred_val, model):
+def get_metricz(X_tr, y_tr, X_val, y_val, y_pred_tr, y_pred_val, model):
     ac_tr = accuracy_score(y_tr, y_pred_tr)
     ac_val= accuracy_score(y_val, y_pred_val)
     f1_tr = f1_score(y_tr, y_pred_tr)
@@ -204,12 +196,6 @@ def get_metrics_2(X_tr, y_tr, X_val, y_val, y_pred_tr, y_pred_val, model):
     print('Validation Precision Score: ', pr_val)
     print('Training Average Precision Score: ', aps_tr)
     print('Validation Average Precision Score: ', aps_val)
-    print('')
-    print("Training Classification Report: ")
-    print(classification_report(y_tr, y_pred_tr))
-    print("")
-    print("Validation Classification Report: ")
-    print(classification_report(y_val, y_pred_val))
     
     cnf = confusion_matrix(y_val, y_pred_val)
     group_names = ['TN','FP','FN','TP']
@@ -250,3 +236,5 @@ def sampling(X_tr, y_tr, X_val, y_val, model, best_model):
     y_pred_tr = fit.predict(X_tr_res)
     y_pred_val = fit.predict(X_val_res)
     get_metric(X_tr_res, y_tr_res, X_val_res, y_val_res, y_pred_tr, y_pred_val, fit)
+
+
