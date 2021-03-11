@@ -4,32 +4,32 @@
 
 **Overview:**
 
-
+(Steven)
 
 
 **Business Proposal:**
 
-
+(Steven)
 
 
 **Data Analysis:**
 
-
+(Steven)
 
 
 **Models:**
 
-
+(Vanko)
 
 
 **Next Steps:**
 
-
+(Vanko)
 
 
 **Repository Structure:**
 
-
+(Vanko)
 
 
 
