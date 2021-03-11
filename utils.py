@@ -5,9 +5,11 @@ from sklearn.metrics import precision_score, recall_score, accuracy_score, f1_sc
 from collections import Counter
 from tqdm import tqdm
 from nltk.stem.porter import PorterStemmer
-from textblob import TextBlob
 from textblob import Word
 from nltk.corpus import stopwords
+import re
+import nltk
+import pandas as pd
 
 def group_list(lst, size=100):
     """
@@ -44,6 +46,7 @@ def tweets_request(tweets_ids):
 
 
 def accuracy(y, y_hat):
+    
     y_y_hat = list(zip(y, y_hat))
     tp = sum([1 for i in y_y_hat if i[0] == 1 and i[1] == 1])
     tn = sum([1 for i in y_y_hat if i[0] == 0 and i[1] == 0])
@@ -116,6 +119,11 @@ def hash_tags(df, col):
     print(df[[col, 'hashtags']].head())
 
 def preprocess_tweet(df, col):
+    """
+        Remove callouts, character references (HTML characters, emojis), # in hashtags, 
+        Remove Twitter code RT and QT, URL links, punctuation, excess whitespace between
+        Lowercase all words and remove leading and trailing whitespaces
+    """
     df[col] = df[col].apply(lambda x: re.sub(r'@[\S]+', ' ', str(x)))
     df[col] = df[col].apply(lambda x: re.sub(r'&[\S]+?;', ' ', str(x)))
     df[col] = df[col].apply(lambda x: re.sub(r'#', ' ', str(x)))
@@ -126,11 +134,34 @@ def preprocess_tweet(df, col):
     df[col] = df[col].apply(lambda x: re.sub(r'\w*\d\w*', r' ', str(x)))
     df[col] = df[col].apply(lambda x: re.sub(r'\s\s+', ' ', str(x)))
 
-def tokenize(text):
+def tokenize(df, col):
+    """
+        Function to tokenize column of strings without punctuation
+        Input into word_tokenize() must be string with spaces only
+        Output is a list of tokenized words
+    """
+    text = ' '.join(df[col].to_list())
     tokens = nltk.word_tokenize(text)
     return tokens
 
+from nltk.corpus import stopwords
+stop_words = set(stopwords.words('english'))
 def no_stopwords(text):
-    lst = [word for word in text if word not in stop_list]
+    lst = [word for word in text if word not in stop_words]
     return lst
+
+def term_frequency(df):
+    tf1 = (df['tweet'].apply(lambda x: pd.value_counts(x.split(" "))).sum(axis=0).reset_index())
+    tf1.columns = ['words', 'tf']
+    tf1 = tf1.sort_values(by='tf', ascending=False).reset_index()
+    return tf1
+
+def stemming(token_list):
+    ss = PorterStemmer()
+    lst = [ss.stem(w) for w in token_list]
+    return lst
+
+def lemmatization(df):
+    df['lem'] = df['tweet'].apply(lambda x: " ".join([Word(word).lemmatize() for word in x.split()]))
+    return df['lem'].head()
 
