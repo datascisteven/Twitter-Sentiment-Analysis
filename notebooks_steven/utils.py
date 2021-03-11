@@ -4,6 +4,10 @@ import seaborn as sns
 from sklearn.metrics import precision_score, recall_score, accuracy_score, f1_score, auc, average_precision_score, confusion_matrix, roc_auc_score, plot_precision_recall_curve
 from collections import Counter
 from tqdm import tqdm
+import config
+import pandas as pd
+import requests
+
 
 def group_list(lst, size=100):
     """
@@ -29,7 +33,7 @@ def tweets_request(tweets_ids):
     for batch in tqdm(tweets_ids):
         url = "https://api.twitter.com/2/tweets?ids={}&tweet.fields=created_at&expansions=author_id&user.fields=created_at".format(batch)
         payload={}
-        headers = {'Authorization': 'Bearer ' + config.bearer_token,
+        headers = {'Authorization': 'Bearer ' + config.keys['bearer_token'],
         'Cookie': 'personalization_id="v1_hzpv7qXpjB6CteyAHDWYQQ=="; guest_id=v1%3A161498381400435837'}
         r = requests.request("GET", url, headers=headers, data=payload)
         data = r.json()
