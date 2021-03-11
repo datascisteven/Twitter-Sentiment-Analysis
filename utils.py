@@ -1,11 +1,14 @@
-import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
-from sklearn.metrics import precision_score, recall_score, accuracy_score, f1_score, auc, average_precision_score, confusion_matrix, roc_auc_score, plot_precision_recall_curve
-from collections import Counter
+from sklearn.metrics import precision_score, recall_score, accuracy_score, f1_score, auc, average_precision_score, confusion_matrix, roc_auc_score
 from tqdm import tqdm
 import re
 import nltk
+from nltk.stem.porter import PorterStemmer
+from textblob import Word
+import pandas as pd
+import requests
+from config import *
 
 def group_list(lst, size=100):
     """
@@ -212,3 +215,12 @@ def term_frequency(df):
     tf1.columns = ['words', 'tf']
     tf1 = tf1.sort_values(by='tf', ascending=False).reset_index()
     return tf1
+
+def stemming(token_list):
+    ss = PorterStemmer()
+    lst = [ss.stem(w) for w in token_list]
+    return lst
+
+def lemmatization(df):
+    df['lem'] = df['tweet'].apply(lambda x: " ".join([Word(word).lemmatize() for word in x.split()]))
+    return df['lem'].head()
