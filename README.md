@@ -1,9 +1,45 @@
 # Sentiment Analysis on Twitter Hate Tweets
 
-Labeled racist, sexist, and homophobic tweets
+![twitter-bird-angry-curse](https://user-images.githubusercontent.com/591592/110745851-e6987600-8209-11eb-9e99-d4a4d09eba93.jpg)
+
+**Overview:**
 
 
-**Sources:**  
+
+
+**Business Proposal:**
+
+
+
+
+**Data Analysis:**
+
+
+
+
+**Models:**
+
+
+
+
+**Next Steps:**
+
+
+
+
+**Repository Structure:**
+
+
+
+
+
+**Contact Information:**
+
+
+
+
+
+**References:**  
 
 - Davidson, T., Warmsley, D., Macy, M. and Weber, I., 2017. Automated Hate Speech Detection and the Problem of Offensive Language \[Data file\]. ArXiv. Retrieved from:  https://github.com/t-davidson/hate-speech-and-offensive-language. (Publication: https://arxiv.org/pdf/1703.04009.pdf)
 
