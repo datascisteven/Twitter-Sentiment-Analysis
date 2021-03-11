@@ -1,8 +1,6 @@
-import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
-from sklearn.metrics import precision_score, recall_score, accuracy_score, f1_score, auc, average_precision_score, confusion_matrix, roc_auc_score, plot_precision_recall_curve
-from collections import Counter
+from sklearn.metrics import precision_score, recall_score, f1_score, average_precision_score, confusion_matrix, roc_auc_score, plot_precision_recall_curve
 from tqdm import tqdm
 from nltk.stem.porter import PorterStemmer
 from textblob import Word
@@ -10,6 +8,8 @@ from nltk.corpus import stopwords
 import re
 import nltk
 import pandas as pd
+import requests
+import config
 
 def group_list(lst, size=100):
     """
@@ -45,40 +45,11 @@ def tweets_request(tweets_ids):
     return pd.concat(df_lst)
 
 
-def accuracy(y, y_hat):
-    
-    y_y_hat = list(zip(y, y_hat))
-    tp = sum([1 for i in y_y_hat if i[0] == 1 and i[1] == 1])
-    tn = sum([1 for i in y_y_hat if i[0] == 0 and i[1] == 0])
-    return (tp + tn) / float(len(y_y_hat))
-
-def f1(y, y_hat):
-    precision_score = precision(y, y_hat)
-    recall_score = recall(y, y_hat)
-    numerator = precision_score * recall_score
-    denominator = precision_score + recall_score
-    return 2 * (numerator / denominator)
-
-def precision(y, y_hat):
-    y_y_hat = list(zip(y, y_hat))
-    tp = sum([1 for i in y_y_hat if i[0] == 1 and i[1] == 1])
-    fp = sum([1 for i in y_y_hat if i[0] == 0 and i[1] == 1])
-    return tp / float(tp + fp)
-
-def recall(y, y_hat):
-    # Your code here
-    y_y_hat = list(zip(y, y_hat))
-    tp = sum([1 for i in y_y_hat if i[0] == 1 and i[1] == 1])
-    fn = sum([1 for i in y_y_hat if i[0] == 1 and i[1] == 0])
-    return tp / float(tp + fn)
-
-def auc(X, y, model):
-    probs = model.predict_proba(X)[:,1] 
-    return roc_auc_score(y, probs)
-
-def auc2(X, y, model):
-    probs = model.decision_function(X)
-    return roc_auc_score(y, probs)
+def get_metrics(X, y, y_hat, model):
+    print("Training Precision: ", precision_score(y_tr, y_hat_tr))
+    print("Testing Precision: ", precision_score(y_tt, y_hat_tt))
+    print("Training Recall: ", recall_score(y_tr, y_hat_tr))
+    print()
 
 def aps(X, y, model):
     probs = model.predict_proba(X)[:,1]
