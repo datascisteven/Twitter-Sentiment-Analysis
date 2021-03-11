@@ -4,6 +4,10 @@ import seaborn as sns
 from sklearn.metrics import precision_score, recall_score, accuracy_score, f1_score, auc, average_precision_score, confusion_matrix, roc_auc_score, plot_precision_recall_curve
 from collections import Counter
 from tqdm import tqdm
+from nltk.stem.porter import PorterStemmer
+from textblob import TextBlob
+from textblob import Word
+from nltk.corpus import stopwords
 
 def group_list(lst, size=100):
     """
@@ -153,6 +157,7 @@ def tokenize(text):
     tokens = nltk.word_tokenize(text)
     return tokens
 
-def stopwords(text):
+def no_stopwords(text):
     lst = [word for word in text if word not in stop_list]
     return lst
+
