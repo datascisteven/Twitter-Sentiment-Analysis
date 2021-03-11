@@ -1,4 +1,4 @@
-# Sentiment Analysis on Twitter Hate Tweets
+# Sentiment Analysis of Hate Tweets
 
 ![twitter-bird-angry-curse](https://user-images.githubusercontent.com/591592/110745851-e6987600-8209-11eb-9e99-d4a4d09eba93.jpg)
 
