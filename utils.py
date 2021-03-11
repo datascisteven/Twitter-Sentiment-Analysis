@@ -85,34 +85,9 @@ def aps2(X, y, model):
     probs = model.decision_function(X)
     return average_precision_score(y, probs)
 
-def get_metrics(X_tr, y_tr, X_val, y_val, y_pred_tr, y_pred_val, model):
-    ac_tr = accuracy_score(y_tr, y_pred_tr)
-    ac_val= accuracy_score(y_val, y_pred_val)
-    f1_tr = f1_score(y_tr, y_pred_tr)
-    f1_val = f1_score(y_val, y_pred_val)
-    au_tr = auc(X_tr, y_tr, model)
-    au_val = auc(X_val, y_val, model)
-    rc_tr = recall_score(y_tr, y_pred_tr)
-    rc_val = recall_score(y_val, y_pred_val)
-    pr_tr = precision_score(y_tr, y_pred_tr)
-    pr_val = precision_score(y_val, y_pred_val)
-    aps_tr = aps(X_tr, y_tr, model)
-    aps_val = aps(X_val, y_val, model)
-
-    print('Training Accuracy: ', ac_tr)
-    print('Validation Accuracy: ', ac_val)
-    print('Training F1 Score: ', f1_tr)
-    print('Validation F1 Score: ', f1_val)
-    print('Training AUC Score: ', au_tr)
-    print('Validation AUC Score: ', au_val)
-    print('Training Recall Score: ', rc_tr)
-    print('Validation Recall Score: ', rc_val)
-    print('Training Precision Score: ', pr_tr)
-    print('Validation Precision Score: ', pr_val)
-    print('Training Average Precision Score: ', aps_tr)
-    print('Validation Average Precision Score: ', aps_val)
     
-    cnf = confusion_matrix(y_val, y_pred_val)
+def conf_matrix(y_test, y_hat_test):
+    cnf = confusion_matrix(y_test, y_hat_test)
     group_names = ['TN','FP','FN','TP']
     group_counts = ['{0:0.0f}'.format(value) for value in cnf.flatten()]
     group_percentages = ['{0:.2%}'.format(value) for value in cnf.flatten()/np.sum(cnf)]
@@ -146,8 +121,6 @@ def preprocess_tweet(df, col):
     df[col] = df[col].apply(lambda x: re.sub(r'#', ' ', str(x)))
     df[col] = df[col].apply(lambda x: re.sub(r'(\bRT\b|\bQT\b)', ' ', str(x)))
     df[col] = df[col].apply(lambda x: re.sub(r'http[\S]+', ' ', str(x)))
-    # df[col] = df[col].apply(lambda x: [word for word in x if word not in stop_words])
-    # df[col] = df[col].apply(lambda x: str(x)[1:-1])
     df[col] = df[col].apply(lambda x: re.sub(r'[^\w\s]', r'', str(x)))
     df[col] = df[col].apply(lambda x: " ".join(x.lower() for x in x.split()))
     df[col] = df[col].apply(lambda x: re.sub(r'\w*\d\w*', r' ', str(x)))
