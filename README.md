@@ -3,7 +3,9 @@
 
 ## Overview
 
-
+Main goal of this project to create a a mode that will be able to identify hate speech using machine learning binary classification algorithms.
+Random Forest, Naive Bayes, Logistic Regression algorithms used to create baseline models. 
+The final model was a Random Forest that used TfidfVectorizer for feature engineering. It produced an F1 of 0.8 and Recall (TPR) of 0.93.
 
 ## Business Problem
 In our modern world we have freedom in sharing our thoughts, beliefs, criticizing other people and commenting their thoughts on different social media. It became possible also due to growing democracy both in the structure of different countries and in the use of social networks and the dissemination of people’s opinions through them.
@@ -107,7 +109,7 @@ One of the further steps will be to expand this project for multi classification
     ├── data                         # CSV files obtained trough API request
     ├── utils.py                     # py file with functions for ingeniring and modeling
     ├── images                       # Both sourced externally and generated from Code       
-    ├── Final_Notebook.ipynb         # Notebook that goes over out modling process"                                        
+    ├── Final_Notebook.ipynb         # Notebook that goes over out modling process"                                       
     └── notebooks                    # notebooks for project
     
     
