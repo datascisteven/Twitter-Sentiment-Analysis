@@ -45,7 +45,7 @@ Data for this project was sourced from a study about Automated Hate Speech Detec
 During EDA we discovered that data from Cornell University appears to be unbalanced with minority class as hate speech and represented on the left side of the graph. With API requests using labeled as hate speech tweets ids we were able to bring more data to our project and balance it. Left side of the graph shows balanced data.
  
 
-<img src="images/class_inbal.png" width="500"/> <img src="images/class_balan.png" width="500"/>
+<img src="images/class_inbal.png" width="500"/><img src="images/class_balan.png" width="500"/>
  
 After appropriate Pre-Processing that include Tokenization, Removing Stop-words and Cleaning Data we were able to generate frequency distribution of words within the whole corpus. It helped to understand data better and explained to us what kind of additional cleaning needs to be done before turning data into a Document-Term Matrix. Graph below shows the 25 most frequent words that we were able to find in each class that belong to the main corpus.
 
