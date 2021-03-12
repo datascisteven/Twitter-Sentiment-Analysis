@@ -1,5 +1,7 @@
 # Sentiment Analysis on Twitter. Hate Speech recognition
 
+<img src="images/twitter-bird-angry-curse.jpg">
+
 
 ## Overview
 
