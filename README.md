@@ -103,12 +103,12 @@ One of the further steps will be to expand this project for multi classification
 
 ## Repository Structure
 
-    ├── README.md                    # The top-level README for reviewers of this project"
-    ├── data                         # Synergized Data obtained from University of Michigan and Detroit Open Data Portal"
-    ├── modules                      # py files with functions for ingeniring and modeling"
-    ├── images                       # Both sourced externally and generated from Code"       
-    ├── modeling.ipynb               # Notebook that gpes pver out modling process"                                        
-    └── features_engineering.ipynb    # Notebook Used for feature engineering before Modeling"
+    ├── README.md                    # The top-level README for reviewers of this project
+    ├── data                         # CSV files obtained trough API request
+    ├── utils.py                     # py file with functions for ingeniring and modeling
+    ├── images                       # Both sourced externally and generated from Code       
+    ├── Final_Notebook.ipynb         # Notebook that goes over out modling process"                                        
+    └── notebooks                    # notebooks for project
     
     
 
