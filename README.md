@@ -112,7 +112,7 @@ This project shows that we were able to create a system that can provide content
     
     
 **Contact Information:** <br>
-[Ivan Vanko](https://github.com/vanitoz)<br>
+[Ivan Zakharchuk](https://github.com/vanitoz)<br>
 [Steven Yan](https://github.com/examsherpa)<br>
 
 **References:**  
